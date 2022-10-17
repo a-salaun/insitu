@@ -1,0 +1,78 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+}
+
+a,
+a:visited,
+a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a.card {
+    text-decoration: none;
+}
+
+a.card:hover, a.card:focus {
+    color: white;
+    background-color: black;
+}
+
+#map {
+    height: 500px;
+    border: 1px solid lightgray;
+    border-radius: .375rem;
+}
+
+#owm {
+    border: 1px solid lightgray;
+    border-radius: .375rem;
+}
+
+#weatherIcon {
+    font-size: 2.8rem;
+}
+
+/* MAP */
+
+.map-label {
+    position: absolute;
+    bottom: 0;
+    left: -50%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+ }
+
+.map-label-content {
+    order: 1;
+    position: relative;
+    left: -50%;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px solid black;
+    padding: 3px;
+    white-space: nowrap;
+}
+
+.map-label-arrow {
+    order: 2;
+    width: 0px;
+    height: 0px;
+    left: 50%;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+    border-width: 10px 6px 0px 6px;
+    margin-left: -6px;
+}
+

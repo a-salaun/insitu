@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>IN SITU</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./styles.css">
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <!-- FONTAWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <!-- LEAFLET MAP -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
+
+</head>
+<body>
+
+    <div class="container mb-4">
+        <h1>IN SITU</h1>
+    </div>
+
+    <!-- FORMULAIRE -->    
+    <div class="container mb-4">
+        <form id="modal_form" action="process_form.php" method="post">
+            <div class="form-row">
+
+                <!-- ADRESSE -->
+                <div class="form-group col mb-2">
+                    <label for="adresse" class="control-label">Adresse</label>
+                    <input type="text" class="form-control" id="adresse" name="adresse" autocomplete="off" data-toggle="tooltip" data-placement="top" title="Commencer par saisir une adresse pour activer l'autocomplétion...">
+                    <div class="address-feedback position-absolute list-group" style="z-index:1100;"></div>
+                </div>
+
+            </div>
+
+            <div class="form-row d-flex justify-content-between">
+                
+                <!-- CODE POSTAL -->
+                <div class="form-group col-3">
+                    <label for="cp" class="control-label">Code Postal</label>
+                    <input type="text" class="form-control" id="cp" name="cp">
+                </div>
+
+                <!-- VILLE -->
+                <div class="form-group col-4">
+                    <label for="ville">Ville</label>
+                    <input type="text" class="form-control" id="ville" name="ville" required>
+                </div>
+
+                <!-- COORDONNEES -->
+                <div class="form-group col-3">
+                    <label for="coordonnees">Coordonnées</label>
+                    <input type="text" class="form-control" id="coordonnees" name="coordonnees" required>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- MAP -->
+    <div class="container mb-4">
+        <div id="map"></div>     
+    </div>
+
+    <!-- METEO OPEWEATHERMAP -->
+    <div class="container mb-4">
+
+        <div class="container-fluid p-0 card">
+
+            <!-- COLLAPSE -->
+            <!-- <div class="card-header" style="text-align: right;">
+                <a data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapse">
+                    -
+                </a> 
+            </div> -->
+
+            <!-- BULLETIN DU JOUR -->
+            <div class="d-flex flex-wrap m-2 justify-content-between collapse">
+
+                <!-- PANNEAU DE GAUCHE -->
+                <div class="col-md-6 col-xs-12 mb-2">
+                    
+                    <!-- VILLE -->
+                    <div id="city" class="h3 text-uppercase"></div>
+
+                    <!-- DATE LOCALE -->
+                    <div id="localDate" class="h6 text-capitalize"></div>
+
+                    <!-- HEURE LOCALE -->
+                    <div id="localTime" class="h4 mb-0"></div>
+                    
+                </div>
+
+                <!-- BREAKLINE -->
+                <div class="d-sm-none w-100"></div>
+
+                <!-- PANNEAU DE DROITE -->
+                <div class="row">
+
+                    <!-- GAUCHE -->
+                    <div class="col-md-3 col-xs-6 mb-2" ></div>
+                        <div class="text-center">
+
+                            <!-- WEATHER ICON -->
+                            <i class="fa-solid" id="weatherIcon"></i>
+
+                            <!-- TEMPERATURE -->
+                            <div id="temp" class="h3 mb-0"></div>
+        
+                            <!-- DESCRIPTION -->
+                            <div id="description" class="h6 mb-0 fst-italic"></div>
+
+                        </div>
+                    </div>
+
+                    <!-- DROITE -->
+                    <div class="col-md-3 col-xs-6 mb-2" style="text-align: right;">
+
+                        <!-- HUMIDITÉ -->
+                        <div id="humidity" class="h7"></div>
+        
+                        <!-- VENT -->
+                        <div id="wind" class="h7"></div>
+
+                        <!-- MAXIMALE -->
+                        <div id="tempMax" class="h7"></div>
+
+                        <!-- MINIMALE -->
+                        <div id="tempMin" class="h7 mb-0"></div>
+
+                    </div>
+
+                </div>
+
+            <!-- BULLETIN SUR 4 JOURS -->
+            <div class="card-deck d-flex flex-wrap justify-content-between p-1">
+
+                <!-- J+1 -->
+                <div class="card flex-fill text-center m-1 p-2">
+                    <div id="day-1-name" class="h6 mt-0 text-capitalize"></div>
+                    <div id="day-1-icon" class="h1 fa-solid"></div>
+                    <div id="day-1-temp" class="h5 mb-0"></div>
+                </div>
+
+                <!-- J+2 -->
+                <div class="card flex-fill text-center m-1 p-2">
+                    <div id="day-2-name" class="h6 mt-0 text-capitalize"></div>
+                    <div id="day-2-icon" class="h1 fa-solid"></div>
+                    <div id="day-2-temp" class="h5 mb-0"></div>
+                </div>
+
+                <!-- J+3 -->
+                <div class="card flex-fill text-center m-1 p-2">
+                    <div id="day-3-name" class="h6 mt-0 text-capitalize"></div>
+                    <div id="day-3-icon" class="h1 fa-solid"></div>
+                    <div id="day-3-temp" class="h5 mb-0"></div>
+                </div>
+
+                <!-- J+4 -->
+                <div class="card flex-fill text-center m-1 p-2">
+                    <div id="day-4-name" class="h6 mt-0 text-capitalize"></div>
+                    <div id="day-4-icon" class="h1 fa-solid"></div>
+                    <div id="day-4-temp" class="h5 mb-0"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- API GAS -->
+    <div class="container mb-4">
+        <div class="container-fluid p-0 card">
+
+            <h2 class="text-center mb-0">PRIX DU CARBURANT EN TEMPS REEL</h2>
+            
+            <div class="card-deck d-flex flex-wrap justify-content-between p-1">
+
+                <!-- B7 -->
+                <a id="b7" class="card flex-fill text-center m-1 p-2" href="#">
+                    B7
+                </a>
+
+                <!-- SP95 -->
+                <a id="sp95" class="card flex-fill text-center m-1 p-2" href="#">
+                    SP95
+                </a>
+
+                <!-- E10 -->
+                <a id="e10" class="card flex-fill text-center m-1 p-2" href="#">
+                    E10
+                </a>
+
+                <!-- SP98 -->
+                <a id="sp98" class="card flex-fill text-center m-1 p-2" href="#">
+                    SP98
+                </a>
+
+                <!-- E85 -->
+                <a id="e85" class="card flex-fill text-center m-1 p-2" href="#">
+                    E85
+                </a>
+
+                <!-- GPL -->
+                <a id="gpl" class="card flex-fill text-center m-1 p-2" href="#">
+                    GPL
+                </a>
+
+            </div>
+
+
+        </div>
+    </div>  
+
+</body>
+
+    <!-- BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    <!-- FONTAWESOME -->
+    <script src="https://kit.fontawesome.com/2fad544db2.js" crossorigin="anonymous"></script>
+
+    <!-- LEAFLET MAP -->
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- JS -->
+    <script src="./map.js"></script>
+    <script src="./owm.js"></script>
+
+    
+
+</html>
