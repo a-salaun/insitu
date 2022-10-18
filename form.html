@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+       <!-- FORMULAIRE -->    
+       <div class="container mt-4 mb-4">
+        <form id="modal_form" action="process_form.php" method="post">
+            <div class="form-row">
+
+                <!-- ADRESSE -->
+                <div class="form-group col mb-2">
+                    <img class="form-control-feedback" src="./img/logo/logo_40x40.svg" alt="icone de recherche">
+                    <input type="text" class="form-control form-control-lg rounded-pill" id="adresse" name="adresse" autocomplete="off" data-toggle="tooltip" data-placement="top" placeholder="Saisir une adresse pour activer l'autocomplétion...">
+                    <div class="address-feedback position-absolute list-group" style="z-index:1100;"></div>
+                </div>
+
+            </div>
+
+            <div class="form-row d-flex justify-content-between">
+                
+                <!-- CODE POSTAL -->
+                <div class="form-group col-3">
+                    <label for="cp" class="control-label">Code Postal</label>
+                    <input type="text" class="form-control" id="cp" name="cp">
+                </div>
+
+                <!-- VILLE -->
+                <div class="form-group col-4">
+                    <label for="ville">Ville</label>
+                    <input type="text" class="form-control" id="ville" name="ville" required>
+                </div>
+
+                <!-- COORDONNEES -->
+                <div class="form-group col-3">
+                    <label for="coordonnees">Coordonnées</label>
+                    <input type="text" class="form-control" id="coordonnees" name="coordonnees" required>
+                </div>
+                
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>

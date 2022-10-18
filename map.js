@@ -28,32 +28,24 @@ function gas(gas) {
                 let price = field.prix_valeur.toFixed(3);
                 let gasPrice = L.divIcon({
                     iconSize:null,
+                    popupAnchor: [0, -40],
                     html:'<div class="map-label"><div class="map-label-content">'+ price +'</div><div class="map-label-arrow"></div></div>'
                 });
 
                 // on boucle sur les marqueurs de positions selon les coordonées obtenues
-                let marker = L.marker(coor, {icon: gasPrice}).addTo(map);
-
-                // on boucle sur les horaires d'ouverture
-                let reviver = function (key, value) {
-                    return typeof value === 'undefined' ? null : value;
-                }
-                
-                let h = JSON.stringify(field.horaires, reviver).replaceAll(/@|-24-24/g, '');
-                // console.log(hRpl);
-
-                let hStr = JSON.parse(h);
-                let hObj = {...JSON.parse(hStr)};
-                console.log(hObj);
-
-                console.log(hObj.jour[0].horaire);
+                let marker = L.marker(coor, {icon: gasPrice}).addTo(map);         
 
                 // on attache aux marqueurs des popups contenant les données cibles
                 marker.bindPopup(
-                    "<strong>" 
-                        + field.adresse.toUpperCase() + " "
+                    "<strong>"
+                        + "<a class='text-uppercase' style='color: black;' href='http://maps.google.com/?q=station service "
+                        + field.adresse + " "
                         + field.cp + " "
-                        + field.com_name.toUpperCase() 
+                        + field.com_name + "'>"
+                            + field.adresse + " "
+                            + field.cp + " "
+                            + field.com_name
+                        + "</a>" 
                     + "</strong>"
                     + "<p>"
                         + field.prix_nom + " : "
@@ -66,16 +58,6 @@ function gas(gas) {
                         + field.prix_maj.substring(0,4) + " à "
                         + field.prix_maj.substring(11,16)
                     + "</p>"
-                    + "<p>"
-                        + "Horaires : "
-                        + (hObj.automate == 1 ? '<strong>Automate 24/24</strong>' : '')
-                            + "<ul>"
-                                + "<li>Lundi : "
-                                    // + (hObj.jour[0].horaire.ouverture == 'undefined' ? '?' : hObj.jour[0].horaire.ouverture)
-                                + "</li>"
-                            + "</ul>"
-                    + "</p>"
-                   
 
                 );
     
@@ -246,11 +228,11 @@ Jawg_Light.addTo(map);
 
 // Définition des marqueurs de position
 let blackIcon = new L.Icon({
-    iconUrl: './img/marker-icon-black.png',
-    shadowUrl: './img/marker-shadow.png',
+    iconUrl: './img/marker/marker-icon-black.png',
+    shadowUrl: './img/marker/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
+    popupAnchor: [0, -30],
     shadowSize: [41, 41]
 });
 

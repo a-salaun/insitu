@@ -28,6 +28,10 @@ a.card:hover, a.card:focus {
     background-color: black;
 }
 
+a.btn:hover {
+    box-shadow: 0 0 12px rgb(206, 212, 218);
+}
+
 #map {
     height: 500px;
     border: 1px solid lightgray;
@@ -41,6 +45,14 @@ a.card:hover, a.card:focus {
 
 #weatherIcon {
     font-size: 2.8rem;
+}
+
+/* NAVBAR */
+
+.navbar .navbar-toggler:focus {
+    border-color: rgb(206, 212, 218);
+    outline: none;
+    box-shadow: 0 0 12px rgb(206, 212, 218);
 }
 
 /* MAP */
@@ -63,6 +75,7 @@ a.card:hover, a.card:focus {
     border: 2px solid black;
     padding: 3px;
     white-space: nowrap;
+    box-shadow: 0 0 8px rgb(0,0,0, 0.5);
 }
 
 .map-label-arrow {
@@ -76,3 +89,49 @@ a.card:hover, a.card:focus {
     margin-left: -6px;
 }
 
+/* FORMULAIRE */
+
+.form-group .form-control {
+    padding-left: 48px;
+}
+
+.form-group .form-control-feedback {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    margin: 4px 0 0 4px;
+    pointer-events: none;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {   
+    border-color: rgb(206, 212, 218);
+    box-shadow: 0 0 12px rgb(206, 212, 218);
+}
+
+.list-group-item.active:hover {
+    background-color: black !important;
+    border-color: black !important;
+}
+
+.list-group-item.active,
+.list-group-item.active:hover {
+    background-color: black !important;
+    border-color: black !important;
+}

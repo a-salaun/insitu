@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="email" type="email" placeholder="Email">
+    <input id="mdp" type="password" placeholder="Mot de passe">
+    <button>GO</button>
+
+</body>
+<script>
+
+import {easyFire} from 'https://cdn.jsdelivr.net/gh/DocteurSEO/easyfire@master/easyfirev0.5.2.js'
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB0fwZ9HK7R51IkOAe7-uLu0BWqdA5SW0A",
+  authDomain: "insitu-190e6.firebaseapp.com",
+  projectId: "insitu-190e6",
+  storageBucket: "insitu-190e6.appspot.com",
+  messagingSenderId: "1028085598575",
+  appId: "1:1028085598575:web:530846c6c0764b4735809a"
+};
+
+const {login, createUser} = easyFire(firebaseConfig)
+
+document
+.querySelector('button')
+.addEventListener('click', function() {
+    const email = document.querySelector('#email').value
+    const mdp = document.querySelector('#mdp').value
+
+    createUser(email, mdp)
+    .then(() => 
+        document.querySelector('h1').textContent = 'User Created!'
+    )
+    
+    login(email, mdp)
+    .then((uid) => {
+        
+        fetch('api/login', {
+            method: 'POST',
+            body: {uid : uid, name : name}
+        })
+
+        // Redirection
+        window.location.href = "insitü.fr"
+
+    
+})
+
+
+</script>
+</html>

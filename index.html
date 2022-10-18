@@ -8,6 +8,9 @@
     
     <title>IN SITU</title>
 
+    <!-- FAVICON -->
+    <link rel="icon" href="./img/logo/logo_40x40.svg">
+
     <!-- CSS -->
     <link rel="stylesheet" href="./styles.css">
 
@@ -23,56 +26,74 @@
 </head>
 <body>
 
-    <div class="container mb-4">
-        <h1>IN SITU</h1>
-    </div>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-light sticky-top shadow border-bottom"> 
+        <div class="container">
 
-    <!-- FORMULAIRE -->    
-    <div class="container mb-4">
-        <form id="modal_form" action="process_form.php" method="post">
-            <div class="form-row">
+            <!-- LOGO -->
+            <a class="navbar-brand" href="#">
+                <img src="./img/logo/logo_134x40.svg" alt="logo insitu">
+            </a>
 
-                <!-- ADRESSE -->
-                <div class="form-group col mb-2">
-                    <label for="adresse" class="control-label">Adresse</label>
-                    <input type="text" class="form-control" id="adresse" name="adresse" autocomplete="off" data-toggle="tooltip" data-placement="top" title="Commencer par saisir une adresse pour activer l'autocomplétion...">
-                    <div class="address-feedback position-absolute list-group" style="z-index:1100;"></div>
-                </div>
-
+            <!-- MENU -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarNav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto" style="text-align: right;">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">ACCUEIL</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">À PROPOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">CONNEXION</a>
+                    </li>
+                </ul>
             </div>
 
-            <div class="form-row d-flex justify-content-between">
-                
-                <!-- CODE POSTAL -->
-                <div class="form-group col-3">
-                    <label for="cp" class="control-label">Code Postal</label>
-                    <input type="text" class="form-control" id="cp" name="cp">
-                </div>
+        </div>
+    </nav>
 
-                <!-- VILLE -->
-                <div class="form-group col-4">
-                    <label for="ville">Ville</label>
-                    <input type="text" class="form-control" id="ville" name="ville" required>
-                </div>
-
-                <!-- COORDONNEES -->
-                <div class="form-group col-3">
-                    <label for="coordonnees">Coordonnées</label>
-                    <input type="text" class="form-control" id="coordonnees" name="coordonnees" required>
+    <!-- FORMULAIRE -->    
+    <div class="container mt-4 mb-4">
+        <form id="modal_form" action="process_form.php" method="post">
+            <div class="form-row">
+                <div class="form-group col mb-2">
+                    <img class="form-control-feedback" src="./img/logo/logo_40x40.svg" alt="icone de recherche">
+                    <input type="text" class="form-control form-control-lg rounded-pill" id="adresse" name="adresse" autocomplete="off" data-toggle="tooltip" data-placement="top" placeholder="Saisir une adresse pour activer l'autocomplétion...">
+                    <div class="address-feedback position-absolute list-group" style="z-index:1100;"></div>
                 </div>
             </div>
         </form>
     </div>
 
+    <!-- LOCALISATION -->
+    <div class="form-row d-flex justify-content-between">
+        <div class="form-group col-3">
+            <label for="cp" class="control-label">Code Postal</label>
+            <input type="text" class="form-control" id="cp" name="cp">
+        </div>
+        <div class="form-group col-4">
+            <label for="ville">Ville</label>
+            <input type="text" class="form-control" id="ville" name="ville" required>
+        </div>
+        <div class="form-group col-3">
+            <label for="coordonnees">Coordonnées</label>
+            <input type="text" class="form-control" id="coordonnees" name="coordonnees" required>
+        </div>
+    </div>
+
     <!-- MAP -->
     <div class="container mb-4">
-        <div id="map"></div>     
+        <div id="map" class="shadow"></div>     
     </div>
 
     <!-- METEO OPEWEATHERMAP -->
     <div class="container mb-4">
 
-        <div class="container-fluid p-0 card">
+        <div class="container-fluid p-0 card shadow">
 
             <!-- COLLAPSE -->
             <!-- <div class="card-header" style="text-align: right;">
@@ -178,9 +199,9 @@
 
     <!-- API GAS -->
     <div class="container mb-4">
-        <div class="container-fluid p-0 card">
+        <div class="container-fluid p-0 card shadow">
 
-            <h2 class="text-center mb-0">PRIX DU CARBURANT EN TEMPS REEL</h2>
+            <h2 class="text-center mb-0">PRIX DU CARBURANT</h2>
             
             <div class="card-deck d-flex flex-wrap justify-content-between p-1">
 
@@ -218,7 +239,55 @@
 
 
         </div>
-    </div>  
+    </div>
+    
+    <!-- FOOTER -->
+    <footer class="text-center text-white shadow-lg border-top">
+        <div class="container pt-4">
+
+            <!-- SOCIAL MEDIA -->
+            <section class="mb-2">
+
+                <!-- Facebook -->
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1 rounded-pill" href="#!" role="button" data-mdb-ripple-color="dark">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+      
+                <!-- Twitter -->
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1 rounded-pill" href="#!" role="button" data-mdb-ripple-color="dark">
+                    <i class="fab fa-twitter"></i>
+                </a>
+        
+                <!-- Google -->
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1 rounded-pill" href="#!" role="button" data-mdb-ripple-color="dark">
+                    <i class="fab fa-google"></i>
+                </a>
+        
+                <!-- Instagram -->
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1 rounded-pill" href="#!" role="button" data-mdb-ripple-color="dark">
+                    <i class="fab fa-instagram"></i>
+                </a>
+        
+                <!-- Linkedin -->
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1 rounded-pill" href="#!" role="button" data-mdb-ripple-color="dark">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+
+                <!-- Github -->
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1 rounded-pill" href="#!" role="button" data-mdb-ripple-color="dark">
+                    <i class="fab fa-github"></i>
+                </a>
+
+            </section>
+
+        </div>
+      
+        <!-- COPYRIGHT -->
+        <div class="text-center text-dark pb-4">
+            Copyright © 2022 INSITÜ
+        </div>
+
+    </footer>
 
 </body>
 
