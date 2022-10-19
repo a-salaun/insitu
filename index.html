@@ -37,7 +37,7 @@
 
             <!-- MENU -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <i class="fa-solid fa-bars"></i>
             </button>
             <div id="navbarNav" class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto" style="text-align: right;">
@@ -56,145 +56,141 @@
         </div>
     </nav>
 
-    <!-- FORMULAIRE -->    
-    <div class="container mt-4 mb-4">
+    
+    <!-- SEARCHBAR --> 
+    <div id="form" class="container position-absolute mt-3 mb-4">
         <form id="modal_form" action="process_form.php" method="post">
             <div class="form-row">
                 <div class="form-group col mb-2">
                     <img class="form-control-feedback" src="./img/logo/logo_40x40.svg" alt="icone de recherche">
-                    <input type="text" class="form-control form-control-lg rounded-pill" id="adresse" name="adresse" autocomplete="off" data-toggle="tooltip" data-placement="top" placeholder="Saisir une adresse pour activer l'autocomplétion...">
-                    <div class="address-feedback position-absolute list-group" style="z-index:1100;"></div>
+                    <input id="search" class="form-control form-control-lg rounded-pill" type="text" name="search" autocomplete="off" data-toggle="tooltip" data-placement="top" placeholder="Où ?">
+                    <div class="search-feedback position-absolute list-group"></div>
                 </div>
             </div>
         </form>
-    </div>
-
-    <!-- LOCALISATION -->
-    <div class="form-row d-flex justify-content-between">
-        <div class="form-group col-3">
-            <label for="cp" class="control-label">Code Postal</label>
-            <input type="text" class="form-control" id="cp" name="cp">
-        </div>
-        <div class="form-group col-4">
-            <label for="ville">Ville</label>
-            <input type="text" class="form-control" id="ville" name="ville" required>
-        </div>
-        <div class="form-group col-3">
-            <label for="coordonnees">Coordonnées</label>
-            <input type="text" class="form-control" id="coordonnees" name="coordonnees" required>
-        </div>
-    </div>
+    </div>  
 
     <!-- MAP -->
-    <div class="container mb-4">
-        <div id="map" class="shadow"></div>     
+    <div id="map" class="border-bottom mb-4">
+        <div id="shadow"></div>
     </div>
 
-    <!-- METEO OPEWEATHERMAP -->
-    <div class="container mb-4">
 
+    <div id="accordion" role="tablist" aria-multiselectable="true">
+    </div>
+
+    <!-- OPENWEATHERMAP -->
+    <div class="container mb-4">
         <div class="container-fluid p-0 card shadow">
 
-            <!-- COLLAPSE -->
-            <!-- <div class="card-header" style="text-align: right;">
-                <a data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapse">
-                    -
-                </a> 
-            </div> -->
-
-            <!-- BULLETIN DU JOUR -->
-            <div class="d-flex flex-wrap m-2 justify-content-between collapse">
-
-                <!-- PANNEAU DE GAUCHE -->
-                <div class="col-md-6 col-xs-12 mb-2">
-                    
-                    <!-- VILLE -->
-                    <div id="city" class="h3 text-uppercase"></div>
-
-                    <!-- DATE LOCALE -->
-                    <div id="localDate" class="h6 text-capitalize"></div>
-
-                    <!-- HEURE LOCALE -->
-                    <div id="localTime" class="h4 mb-0"></div>
-                    
+            <!-- HEADER -->  
+            <a id="meteo" class="h3 ps-2 pe-2 d-flex align-items-center justify-content-between card-header collapsed" data-bs-toggle="collapse" href="#meteo-collapse" aria-expanded="true" aria-controls="meteo-collapse">
+                <div class="d-flex align-items-center">
+                    <i class="fa fa-chevron-down rotate"></i>
+                    <div class="ms-1">PRÉVISIONS MÉTÉO</div> 
                 </div>
+                <i class="fa-solid fa-umbrella"></i>      
+            </a>
 
-                <!-- BREAKLINE -->
-                <div class="d-sm-none w-100"></div>
+            <!-- COLLAPSE -->
+            <div id="meteo-collapse" class="collapse" aria-labelledby="meteo">
+                
+                <!-- BULLETIN DU JOUR -->
+                <div class="d-flex flex-wrap m-2 justify-content-between collapse">
 
-                <!-- PANNEAU DE DROITE -->
-                <div class="row">
+                    <!-- PANNEAU DE GAUCHE -->
+                    <div class="col-md-6 col-xs-12 mb-2">
+                        
+                        <!-- VILLE -->
+                        <div id="city" class="h3 text-uppercase"></div>
 
-                    <!-- GAUCHE -->
-                    <div class="col-md-3 col-xs-6 mb-2" ></div>
-                        <div class="text-center">
+                        <!-- DATE LOCALE -->
+                        <div id="localDate" class="h6 text-capitalize"></div>
 
-                            <!-- WEATHER ICON -->
-                            <i class="fa-solid" id="weatherIcon"></i>
+                        <!-- HEURE LOCALE -->
+                        <div id="localTime" class="h4 mb-0"></div>
+                        
+                    </div>
 
-                            <!-- TEMPERATURE -->
-                            <div id="temp" class="h3 mb-0"></div>
-        
-                            <!-- DESCRIPTION -->
-                            <div id="description" class="h6 mb-0 fst-italic"></div>
+                    <!-- BREAKLINE -->
+                    <div class="d-sm-none w-100"></div>
+
+                    <!-- PANNEAU DE DROITE -->
+                    <div class="row">
+
+                        <!-- GAUCHE -->
+                        <div class="col-md-3 col-xs-6 mb-2" ></div>
+                            <div class="text-center">
+
+                                <!-- WEATHER ICON -->
+                                <i class="fa-solid" id="weatherIcon"></i>
+
+                                <!-- TEMPERATURE -->
+                                <div id="temp" class="h3 mb-0"></div>
+            
+                                <!-- DESCRIPTION -->
+                                <div id="description" class="h6 mb-0 fst-italic"></div>
+
+                            </div>
+                        </div>
+
+                        <!-- DROITE -->
+                        <div class="col-md-3 col-xs-6 mb-2" style="text-align: right;">
+
+                            <!-- HUMIDITÉ -->
+                            <div id="humidity" class="h7"></div>
+            
+                            <!-- VENT -->
+                            <div id="wind" class="h7"></div>
+
+                            <!-- MAXIMALE -->
+                            <div id="tempMax" class="h7"></div>
+
+                            <!-- MINIMALE -->
+                            <div id="tempMin" class="h7 mb-0"></div>
 
                         </div>
-                    </div>
-
-                    <!-- DROITE -->
-                    <div class="col-md-3 col-xs-6 mb-2" style="text-align: right;">
-
-                        <!-- HUMIDITÉ -->
-                        <div id="humidity" class="h7"></div>
-        
-                        <!-- VENT -->
-                        <div id="wind" class="h7"></div>
-
-                        <!-- MAXIMALE -->
-                        <div id="tempMax" class="h7"></div>
-
-                        <!-- MINIMALE -->
-                        <div id="tempMin" class="h7 mb-0"></div>
 
                     </div>
 
+                <!-- BULLETIN SUR 4 JOURS -->
+                <div class="card-deck d-flex flex-wrap justify-content-between p-1">
+
+                    <!-- J+1 -->
+                    <div class="card flex-fill text-center m-1 p-2">
+                        <div id="day-1-name" class="h6 mt-0 text-capitalize"></div>
+                        <div id="day-1-icon" class="h1 fa-solid"></div>
+                        <div id="day-1-temp" class="h5 mb-0"></div>
+                    </div>
+
+                    <!-- J+2 -->
+                    <div class="card flex-fill text-center m-1 p-2">
+                        <div id="day-2-name" class="h6 mt-0 text-capitalize"></div>
+                        <div id="day-2-icon" class="h1 fa-solid"></div>
+                        <div id="day-2-temp" class="h5 mb-0"></div>
+                    </div>
+
+                    <!-- J+3 -->
+                    <div class="card flex-fill text-center m-1 p-2">
+                        <div id="day-3-name" class="h6 mt-0 text-capitalize"></div>
+                        <div id="day-3-icon" class="h1 fa-solid"></div>
+                        <div id="day-3-temp" class="h5 mb-0"></div>
+                    </div>
+
+                    <!-- J+4 -->
+                    <div class="card flex-fill text-center m-1 p-2">
+                        <div id="day-4-name" class="h6 mt-0 text-capitalize"></div>
+                        <div id="day-4-icon" class="h1 fa-solid"></div>
+                        <div id="day-4-temp" class="h5 mb-0"></div>
+                    </div>
+
                 </div>
-
-            <!-- BULLETIN SUR 4 JOURS -->
-            <div class="card-deck d-flex flex-wrap justify-content-between p-1">
-
-                <!-- J+1 -->
-                <div class="card flex-fill text-center m-1 p-2">
-                    <div id="day-1-name" class="h6 mt-0 text-capitalize"></div>
-                    <div id="day-1-icon" class="h1 fa-solid"></div>
-                    <div id="day-1-temp" class="h5 mb-0"></div>
-                </div>
-
-                <!-- J+2 -->
-                <div class="card flex-fill text-center m-1 p-2">
-                    <div id="day-2-name" class="h6 mt-0 text-capitalize"></div>
-                    <div id="day-2-icon" class="h1 fa-solid"></div>
-                    <div id="day-2-temp" class="h5 mb-0"></div>
-                </div>
-
-                <!-- J+3 -->
-                <div class="card flex-fill text-center m-1 p-2">
-                    <div id="day-3-name" class="h6 mt-0 text-capitalize"></div>
-                    <div id="day-3-icon" class="h1 fa-solid"></div>
-                    <div id="day-3-temp" class="h5 mb-0"></div>
-                </div>
-
-                <!-- J+4 -->
-                <div class="card flex-fill text-center m-1 p-2">
-                    <div id="day-4-name" class="h6 mt-0 text-capitalize"></div>
-                    <div id="day-4-icon" class="h1 fa-solid"></div>
-                    <div id="day-4-temp" class="h5 mb-0"></div>
-                </div>
-
+                
+                
+            
             </div>
 
         </div>
-
     </div>
 
     <!-- API GAS -->
@@ -281,6 +277,21 @@
             </section>
 
         </div>
+
+        <!-- LEAFLET -->
+        <div class="text-center text-dark pb-4">
+            <a href="http://leafletjs.com" title="A JS library for interactive maps" style="color: black;">
+                Leaflet
+            </a>
+             ©
+            <a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank" style="color: black;">
+                Jawg
+            </a>
+             ©
+            <a href="https://www.openstreetmap.org/copyright" style="color: black;">
+                OpenStreetMap
+            </a>
+        </div>
       
         <!-- COPYRIGHT -->
         <div class="text-center text-dark pb-4">
@@ -306,7 +317,5 @@
     <!-- JS -->
     <script src="./map.js"></script>
     <script src="./owm.js"></script>
-
-    
 
 </html>

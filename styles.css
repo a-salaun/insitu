@@ -11,12 +11,13 @@ body {
 a,
 a:visited,
 a:active {
-    text-decoration: none;
+    text-decoration: none !important;
     color: inherit;
 }
 
 a:hover {
-    text-decoration: none;
+    text-decoration: none !important;
+    color: initial !important;
 }
 
 a.card {
@@ -34,8 +35,18 @@ a.btn:hover {
 
 #map {
     height: 500px;
-    border: 1px solid lightgray;
-    border-radius: .375rem;
+}
+
+#map #shadow {
+    position: absolute;
+    -moz-box-shadow: inset 0 -12px 12px -12px rgb(206, 212, 218);
+    -webkit-box-shadow: inset 0 -12px 12px -12px rgb(206, 212, 218);
+    box-shadow: inset 0 -12px 12px -12px rgb(206, 212, 218);
+    width:100%;
+    height:100%;
+    display:block;
+    pointer-events:none;
+    z-index: 1;
 }
 
 #owm {
@@ -48,6 +59,21 @@ a.btn:hover {
 }
 
 /* NAVBAR */
+.fa-bars {
+    color: black;
+    font-size: 28px;
+}
+
+.navbar .navbar-toggler {
+    height: 40px;
+}
+
+.navbar .navbar-toggler:hover {
+    border-color: rgb(206, 212, 218);
+    outline: none;
+    box-shadow: 0 0 12px rgb(206, 212, 218);
+
+}
 
 .navbar .navbar-toggler:focus {
     border-color: rgb(206, 212, 218);
@@ -55,7 +81,29 @@ a.btn:hover {
     box-shadow: 0 0 12px rgb(206, 212, 218);
 }
 
+
 /* MAP */
+.leaflet-pane {
+    padding: 66px 0 0 0;
+}
+
+.leaflet-popup-tip {
+    display: none;
+}
+
+.leaflet-popup-content-wrapper {
+    margin: 0 0 66px 0;
+}
+
+.leaflet-pane,
+.leaflet-container {
+    z-index: 0 !important; 
+}
+
+.leaflet-control,
+.leaflet-control-attribution {
+    z-index: -1 !important;
+}
 
 .map-label {
     position: absolute;
@@ -90,6 +138,11 @@ a.btn:hover {
 }
 
 /* FORMULAIRE */
+#form {
+    z-index: 10;
+    left: 50%;
+    transform: translate(-50%);
+}
 
 .form-group .form-control {
     padding-left: 48px;
@@ -134,4 +187,18 @@ input[type="color"]:focus,
 .list-group-item.active:hover {
     background-color: black !important;
     border-color: black !important;
+}
+
+/* COLLAPSE */
+
+.card-header a {
+    text-decoration: none;
+}
+
+.rotate {
+    transition: 0.3s transform ease-in-out;
+}
+
+.collapsed .rotate {
+    transform: rotate(-90deg);
 }
